@@ -1,9 +1,12 @@
 import React from "react"
 
 function UserInput(props) {
+
+
+
     return(
         <div>
-            <form action="POST">
+            <form onSubmit>
                 <label htmlFor="">Date</label>
                 <input type="date" />
 
@@ -24,7 +27,10 @@ function UserInput(props) {
                 <label htmlFor="">Description or Comments</label>
                 <input type="textfield" />
 
-                <input type="submit" value="Post!~" />
+                <button type="submit" >
+                    Record Workout
+                </button>
+
             </form>
         </div>
     )
