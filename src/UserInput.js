@@ -6,7 +6,7 @@ function UserInput(props) {
 
     return(
         <div>
-            <form onSubmit>
+            <form>
                 <label htmlFor="">Date</label>
                 <input type="date" />
 

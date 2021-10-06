@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './App.css';
-import { ref, onValue, push, remove } from "firebase/database";
+import { ref, onValue, push } from "firebase/database";
 import UserInput from './UserInput';
 import realtime from './firebase';
 import UserLog from './UserLog';
-
 function App() {
 
   // Setup States
@@ -12,6 +11,7 @@ function App() {
     // The other state will be adding things to the log. So first I have to figure out how to display the log with the database that I have right now using state. Afterwards implement the secondary state that switches the form and the logs(divs entries)
   const [displayState, setDisplayState] = useState(false)
   const [userInput, setUserInput] = useState("")
+
   const [log, setLog] = useState([]);
   
 
@@ -37,9 +37,9 @@ function App() {
     
   }, []);
   
-  
+  // Commented out Code below in order to deploy to netlify
 
-  const handleChange = (event) => {
+  const handleChange = (event, userInput) => {
     setUserInput(event.target.value)
   };
 
@@ -54,14 +54,6 @@ function App() {
       alert("Write Something!")
     }
   };
-
-  <UserLog log={log} />
-
-const sendInformation = (e, UserInput) =>{
-  e.preventDefault()
-
-  console.log("Testing")
-}
 
   return (
     <div className="App">
@@ -109,7 +101,10 @@ const sendInformation = (e, UserInput) =>{
       </div>
       :
       <div>
-        <UserInput />
+        <UserInput 
+        hangleChange = {handleChange}
+        handleSubmit = {handleSubmit}
+        />
       </div>
     }
 
