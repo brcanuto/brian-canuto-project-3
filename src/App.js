@@ -27,7 +27,6 @@ function App() {
         }
         newArray.push(entryObject)
       }
-      console.log(newArray)
       setLog(newArray)
     })
     
