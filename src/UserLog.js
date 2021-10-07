@@ -1,7 +1,7 @@
 import React from "react";
 
 function UserLog({ date, typeOfDay, exercise, description}) {
-
+// Displays the exercise log data
   return(
 
 

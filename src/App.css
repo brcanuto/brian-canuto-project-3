@@ -63,6 +63,8 @@ html {
 body {
   min-height: 100%;
 }
+
+
 /* Font Things */
 
 
@@ -81,6 +83,12 @@ h1 {
 
 p {
   font-family: 'Lato', sans-serif;
+}
+
+span {
+  margin-top: 0.5rem;
+  display: block;
+  font-style: italic;
 }
 
 ul {
@@ -141,6 +149,9 @@ li p {
   color: #212121;
 }
 
+input {
+  padding: 0;
+}
 
 /* Footer */
 .footer {
