@@ -5,7 +5,7 @@ function UserLog({ date, typeOfDay, exercise, description}) {
   return(
 
 
-        <li>
+      <li>
         <p>{date}</p>
         <p>{typeOfDay}</p>
         <p>{exercise}</p>

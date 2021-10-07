@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './App.css';
-import { ref, onValue, push } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import UserInput from './UserInput';
 import realtime from './firebase';
 import UserLog from './UserLog';
+
+
 function App() {
 
-  // Setup States
-    // One state will be for switching between the form and the Log
-    // The other state will be adding things to the log. So first I have to figure out how to display the log with the database that I have right now using state. Afterwards implement the secondary state that switches the form and the logs(divs entries)
   const [displayState, setDisplayState] = useState(false)
-  const [userInput, setUserInput] = useState("")
-
   const [log, setLog] = useState([]);
   
 
@@ -21,7 +18,6 @@ function App() {
     onValue(dbRef, (snapshot) => {
       
       const myData = snapshot.val();
-  
       const newArray = [];
   
       for (let entry in myData) {
@@ -37,53 +33,42 @@ function App() {
     
   }, []);
   
-  // Commented out Code below in order to deploy to netlify
-
-  const handleChange = (event, userInput) => {
-    setUserInput(event.target.value)
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (userInput) {
-      const dbRef = ref(realtime)
-      push(dbRef, userInput)
-      setUserInput("")
-    } else {
-      alert("Write Something!")
-    }
-  };
 
   return (
     <div className="App">
-      <h1>Hello World! Welcome to the Fitness Tracker</h1>
-      <h2>Some type of subheading</h2>
-      <p>Input your exercise into the following form, press on logs in order to see previous logs</p>
-      <div>
-      {
-      displayState === true ? 
-      <p onClick={() => setDisplayState(false)}>Show User Form</p>
-      :
-      <p onClick={() => setDisplayState(true)}>Show Logs</p>
-      }
-      </div>
-      {
-        displayState
-      }
-      <div>
+      <div className="header">
+        <h1>Buff Skeleton's Workout Log</h1>
+        <h2>Can Skeletons get swole? Yes they can.</h2>
+        <p>Input your exercise into the following form, press on logs in order to see previous logs. All Fields must be entered to submit a log.</p>
 
+
+        <div className="toggleButton">
+        {
+        displayState === true ? 
+        <p onClick={() => setDisplayState(false)}>Show User Form</p>
+        :
+        <p onClick={() => setDisplayState(true)}>Show Logs</p>
+        }
+        </div>
+        {
+          displayState
+        }
+        <div>
+      </div>
+      </div>
+{/* Turnary that displays either submit form or Exercise Log */}
       {
       displayState === true ? 
       <div>
         <ul>
           {
-            log.map( (individualLog, index) => {
-              const date = individualLog.title.date
-              const description = individualLog.title.description
-              const exercise = individualLog.title.exercise
-              const typeOfDay = individualLog.title.typeOfDay
+            // Map through log state and store values in a new array. Pass those values into UserLog
 
+            log.map( (individualLog, index) => {
+              const date = individualLog.title.date.userDate
+              const description = individualLog.title.description.userDescription
+              const exercise = individualLog.title.exercise.userExercise
+              const typeOfDay = individualLog.title.typeOfDay.userTypeOfDay
               return(
                     <UserLog
                     key = {index}
@@ -95,20 +80,21 @@ function App() {
 
               )
             }
-            )
+            // Reverse added so it displays 
+            ).reverse()
           }
       </ul>
       </div>
       :
       <div>
-        <UserInput 
-        hangleChange = {handleChange}
-        handleSubmit = {handleSubmit}
-        />
+        <UserInput />
       </div>
     }
 
 
+
+      <div className="footer"> 
+        <p> Copyright BCCodes 2021</p>
       </div>
     </div>
   );
