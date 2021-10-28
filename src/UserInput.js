@@ -24,8 +24,6 @@ function UserInput(props) {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-
-
 // If Statement to handle empty inputs, It's supposed to clear the inputs as well by resetting the state but wasn't able to figure it out
     if ( (userDate, userExercise, userTypeOfDay,userDescription) ) {
         const dbRef = ref(realtime);
@@ -36,13 +34,11 @@ function UserInput(props) {
             typeOfDay: {userTypeOfDay},
             description: {userDescription}
         });
-
         setUserDate("");
         setUserExercise("");
         setTypeOfDay("");
         setUserDescription("");
         setUserInput("");
-
     } else {
         alert("Buff Skeleton requests you write stuff, respectfully.!")
     }
@@ -50,26 +46,26 @@ function UserInput(props) {
 
 
     return(
-        <div>
+        <section>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="date">Date</label>
                 <input type="date" name="date" id="date" onChange={date}/>
 
                 <label htmlFor="typeOfDay">Type Of Day</label>
-                <input type="text" name="typeOfDay" id="typeOfDay" onChange={typeOfDay} />
+                <input type="text" name="typeOfDay" id="typeOfDay" onChange={typeOfDay}  value="" />
 
                 <label htmlFor="exercise">Exercise</label>
-                <input type="text" name="exercise" id="exercise"  onChange={exercise} />
+                <input type="text" name="exercise" id="exercise"  onChange={exercise} value="" />
 
                 <label htmlFor="description">Description or Comments</label>
-                <input type="textfield" name="descrition" id="description" onChange={description} />
+                <input type="textfield" name="descrition" id="description" onChange={description} value="" />
 
                 <button type="submit" >
                     Record Workout
                 </button>
 
             </form>
-        </div>
+        </section>
     )
 }
 
