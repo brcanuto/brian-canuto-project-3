@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 import { ref, onValue } from "firebase/database";
 import UserInput from './UserInput';
-import realtime from './firebase';
+import {realtime, signup} from './firebase';
 import UserLog from './UserLog';
 
 
